@@ -6,6 +6,8 @@ A simple application that displays a 5 day weather forecast of any city in the W
 - Search a City by providing the City name and Country Code
 - Change view (Grid / List)
 - Change temperature type (Metric: Celsius, Imperial: Fahrenheit)
+- RWD (Responsive Web Design)
+- SPA (Single Page Application)
 
 ### Libraries Used
 - jQuery - for DOM manipulation and dependency for libraries.
