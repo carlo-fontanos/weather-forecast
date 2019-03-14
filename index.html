@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	
+	<!-- Lobibox -->
+	<link rel="stylesheet" href="//cdn.rawgit.com/arboshiki/lobibox/master/dist/css/lobibox.min.css" />
+	
+	<title>Weather Forecast - Carl Victor Fontanos</title>
+</head>
+<body>
+	<div class="container-fluid mt-3">
+		<div class="row">
+			<div class="col-lg-3">
+				<div>
+					<div class="form-group">
+						<label>Search:</label>
+						<input type="text" class="form-control mb-2 input-city" placeholder="Enter city name">
+						<input type="text" class="form-control input-country" placeholder="Enter country code, ex: US, CA">
+					</div>
+					<div class="form-group">
+						<label>Display:</label>
+						<select class="form-control input-display">
+							<option value="tpl-grid">Grid</option>
+							<option value="tpl-list">List</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Unit:</label>
+						<select class="form-control input-unit">
+							<option value="metric">Celsius</option>
+							<option value="imperial">Fahrenheit</option>
+						</select>
+					</div>
+					<input type="submit" class="btn btn-block btn-primary submit-filter" />
+				</div>
+			</div>
+
+			<div class="col-lg-9">
+				<div class="forecast-container"></div>
+			</div>
+		</div>
+	</div>
+	
+	<script id="tpl-grid" type="text/template">
+		<h2 class="mb-2">{{city.name}}, {{city.country}}</h2>
+		<p class="font-weight-bold text-danger">5 Day / 3 Hour Weather Forecast </h5>
+		<hr />
+		
+		<div class="row">
+			{{#list}}
+				<div class="col-md-6 col-lg-4">
+					<div class="card border-0 shadow-lg mb-3">
+						<div class="card-header bg-primary p-3 text-white">
+							<div class="float-left">
+								<h2>{{main.temp}} °<span class="unit-type">C</span></h2>
+								<div class="h5">{{weather.0.description}}</div>
+								<div class="h6">L: {{main.temp_min}}, H: {{main.temp_max}}</div>
+								<div class="h6 text-warning">{{dt_txt}}</div>
+							</div>
+							<div class="float-right">
+								<img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" width="80" />
+							</div>
+						</div>
+						
+						<table class="table mb-0">
+							<tr>
+								<th>Humidity</th>
+								<td>{{main.humidity}} %</td>
+							</tr>
+							<tr>
+								<th>Pressure</th>
+								<td>{{main.pressure}} hpa</td>
+							</tr>
+							<tr>
+								<th>Cloudiness</th>
+								<td>{{clouds.all}} %</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			{{/list}}
+		</div>
+	</script>
+		
+	<script id="tpl-list" type="text/template">	
+		<h2 class="mb-2">{{city.name}}, {{city.country}}</h2>
+		<p class="font-weight-bold text-danger">5 Day / 3 Hour Weather Forecast </h5>
+		<hr />
+		
+		<div class="table-responsive">
+			<table class="table mb-0">
+				<tr>
+					<th>#</th>
+					<th>Date &amp; Time</th>
+					<th>Humidity</th>
+					<th>Pressure</th>
+					<th>Cloudiness</th>
+				</tr>
+				{{#list}}
+				<tr>
+					<td>
+						<div class="float-left mr-2">
+							<img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" width="80" />
+						</div>
+						<h3>{{main.temp}} °<span class="unit-type">C</span></h3>
+						<div>{{weather.0.description}}</div>
+						<div class="h6">L: {{main.temp_min}}, H: {{main.temp_max}}</div>
+					</td>
+					<td class="text-danger font-weight-bold">{{dt_txt}}</td>
+					<td>{{main.humidity}} %</td>
+					<td>{{main.pressure}} hPa</td>
+					<td>{{clouds.all}} %</td>
+				</tr>
+				{{/list}}
+			</table>
+		</div>
+	</script>
+	
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	
+	<!-- jQuery Form -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+	
+	<!-- Mustache JS -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+	
+	<!-- Lobibox -->
+	<script src="//cdn.rawgit.com/arboshiki/lobibox/master/dist/js/lobibox.min.js"></script>
+	
+	<!-- Custom App -->
+	<script src="app.js"></script>
+</body>
+</html>
