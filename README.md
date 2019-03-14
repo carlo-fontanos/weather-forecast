@@ -16,6 +16,6 @@ A simple application that displays a 5 day weather forecast of any city in the W
 ### Demo
 - http://carlofontanos.com/demo/weather-forecast/
 
-### Rnning the App
+### Running the App
 1. Clone / Download the app
 2. Open index.html in your browser. 
